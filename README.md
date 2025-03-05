@@ -16,3 +16,4 @@
 |[Temperature App](docs/scenario3.md)| A temperature converter with incorrect logic and UI issues. |
 |[Shopping Cart](docs/scenario4.md)| A shopping cart system where items cannot be removed, double-add, and prices calculate incorrectly. |
 |[Calendar](docs/scenario5.md)| A calendar app with navigation issues, incorrect event storage, and broken UI interactions. |)||
+
