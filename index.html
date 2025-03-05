@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buggy Web App</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { margin-top: 50px; }
+        button { padding: 10px; font-size: 16px; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Buggy Web App</h1>
+        <p>Find the bugs and report them!</p>
+        
+        <button onclick="showMessage()">Click Me</button>
+        <p id="message" class="hidden">You found a bug!</p>
+        
+        <input type="text" id="number1" placeholder="Enter a number">
+        <input type="text" id="number2" placeholder="Enter another number">
+        <button onclick="calculateSum()">Add Numbers</button>
+        <p>Result: <span id="result">0</span></p>
+    </div>
+
+    <script>
+        function showMessage() {
+            document.getElementById("messages").classList.remove("hidden"); // Bug: Incorrect ID
+        }
+
+        function calculateSum() {
+            let num1 = document.getElementById("number1").value;
+            let num2 = document.getElementById("number2").value;
+            document.getElementById("result").innerText = num1 + num2; // Bug: Incorrect addition (concatenation instead of sum)
+        }
+    </script>
+</body>
+</html>
+
