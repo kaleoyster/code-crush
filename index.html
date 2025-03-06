@@ -10,10 +10,12 @@
         ul { list-style-type: none; padding: 0; }
         li { margin: 10px 0; }
         a { text-decoration: none; font-size: 18px; color: blue; }
+        .banner { width: 100%; max-width: 600px; margin-bottom: 20px; }
     </style>
 </head>
 <body>
     <div class="container">
+        <img src="images/codecrush.png" alt="Code-Crush 2025 Banner" class="banner">
         <h1>Code-Crush 2025</h1>
         <p>Find and report bugs in these web apps!</p>
         <ul>
@@ -24,135 +26,6 @@
             <li><a href="calendar.html">Buggy Calendar</a></li>
         </ul>
     </div>
-</body>
-</html>
-
-<!-- calculator.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buggy Calculator</title>
-</head>
-<body>
-    <h1>Buggy Calculator</h1>
-    <input type="text" id="number1" placeholder="Enter a number">
-    <input type="text" id="number2" placeholder="Enter another number">
-    <button onclick="calculateSum()">Add Numbers</button>
-    <p>Result: <span id="result">0</span></p>
-    <script>
-        function calculateSum() {
-            let num1 = document.getElementById("number1").value;
-            let num2 = document.getElementById("number2").value;
-            document.getElementById("result").innerText = num1 + num2; // Bug: Concatenation instead of sum
-        }
-    </script>
-    <a href="index.html">Back</a>
-</body>
-</html>
-
-<!-- login.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buggy Login</title>
-</head>
-<body>
-    <h1>Buggy Login</h1>
-    <input type="text" id="username" placeholder="Username">
-    <input type="text" id="password" placeholder="Password"> <!-- Bug: Should be type="password" -->
-    <button onclick="login()">Login</button>
-    <p id="message"></p>
-    <script>
-        function login() {
-            let user = document.getElementById("username").value;
-            let pass = document.getElementById("password").value;
-            if (user === "admin" && pass === "password") {
-                document.getElementById("message").innerText = "Login Successful!";
-            } else {
-                document.getElementById("message").innerText = "Incorrect credentials!";
-            }
-        }
-    </script>
-    <a href="index.html">Back</a>
-</body>
-</html>
-
-<!-- temperature.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buggy Temperature Converter</title>
-</head>
-<body>
-    <h1>Buggy Temperature Converter</h1>
-    <input type="text" id="temp" placeholder="Enter temperature">
-    <button onclick="convert()">Convert to Fahrenheit</button>
-    <p>Converted: <span id="result">0</span></p>
-    <script>
-        function convert() {
-            let temp = document.getElementById("temp").value;
-            document.getElementById("result").innerText = temp * 2; // Bug: Wrong formula
-        }
-    </script>
-    <a href="index.html">Back</a>
-</body>
-</html>
-
-<!-- cart.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buggy Shopping Cart</title>
-</head>
-<body>
-    <h1>Buggy Shopping Cart</h1>
-    <button onclick="addItem()">Add Item</button>
-    <button onclick="removeItem()">Remove Item</button>
-    <p>Items: <span id="items">0</span></p>
-    <script>
-        let items = 0;
-        function addItem() {
-            items += 2; // Bug: Double adding instead of one
-            document.getElementById("items").innerText = items;
-        }
-        function removeItem() {
-            items -= 1;
-            if (items < 0) items = 0; // Fix: Ensure it doesn't go negative
-            document.getElementById("items").innerText = items;
-        }
-    </script>
-    <a href="index.html">Back</a>
-</body>
-</html>
-
-<!-- calendar.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buggy Calendar</title>
-</head>
-<body>
-    <h1>Buggy Calendar</h1>
-    <button onclick="nextMonth()">Next Month</button>
-    <p id="month">January</p>
-    <script>
-        let months = ["January", "February", "March", "April"];
-        let index = 0;
-        function nextMonth() {
-            document.getElementById("month").innerText = months[index]; // Bug: Doesn't increment
-        }
-    </script>
-    <a href="index.html">Back</a>
 </body>
 </html>
 
