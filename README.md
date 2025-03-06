@@ -1,3 +1,5 @@
+![code-crush](images/codecrush.png)
+
 # Code-crush (2025)
 - Date: March 4th, 2025
 
