@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temperature Converter</title>
+    <title>Buggy Temperature Converter</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,14 +14,21 @@
             background: linear-gradient(135deg, #ff9a9e, #fad0c4);
             margin: 0;
         }
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 30px; /* Adds space between converter and requirements */
+            margin-top: 30px;
+        }
         .converter-container {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             text-align: center;
-            width: 320px;
-            margin: 0 auto; /* Ensures equal margin on both sides */
+            width: 450px; /* BUG: Too wide on small screens */
+            margin: 0 auto;
         }
         .converter-container h2 {
             margin-bottom: 20px;
@@ -51,18 +58,48 @@
             font-size: 18px;
             margin-top: 15px;
         }
+        .requirements {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            max-width: 350px;
+        }
     </style>
 </head>
 <body>
-    <div class="converter-container">
-        <h2>Temperature Converter</h2>
-        <input type="number" id="temperature" class="input-field" placeholder="Enter temperature">
-        <select id="unit" class="input-field">
-            <option value="celsius">Celsius to Fahrenheit</option>
-            <option value="fahrenheit">Fahrenheit to Celsius</option>
-        </select>
-        <button class="convert-button" onclick="convertTemperature()">Convert</button>
-        <p class="result" id="result"></p>
+
+    <div class="main-container">
+        <!-- Temperature Converter -->
+        <div class="converter-container">
+            <h2>Temperature Converter</h2>
+            <input type="number" id="temperature" class="input-field" placeholder="Enter temperature in Fahrenheit"> <!-- BUG: Incorrect placeholder -->
+            <select id="unit" class="input-field">
+                <option value="fahrenheit">Celsius to Fahrenheit</option> <!-- BUG: Incorrect text -->
+                <option value="celsius">Fahrenheit to Celsius</option> <!-- BUG: Incorrect text -->
+            </select>
+            <button class="convert-button" onclick="convertTemperature()">Convert</button> <!-- BUG: Incorrect function name -->
+            <p class="result" id="result"></p>
+        </div>
+
+        <!-- Requirements Box -->
+        <div class="requirements">
+            <h3>Requirements</h3>
+            <p>The Temperature Converter should function as follows:</p>
+            <ul>
+                <li>Users should enter a numeric temperature in the input field.</li>
+                <li>Users can select whether to convert from Celsius to Fahrenheit or Fahrenheit to Celsius.</li>
+                <li>Pressing the "Convert" button should display the correct result.</li>
+                <li>The conversion formula should be:
+                    <ul>
+                        <li>Celsius to Fahrenheit: (°C × 9/5) + 32</li>
+                        <li>Fahrenheit to Celsius: (°F − 32) × 5/9</li>
+                    </ul>
+                </li>
+                <li>If the input is not a number, it should display an error message.</li>
+            </ul>
+        </div>
     </div>
 
     <script>
@@ -78,7 +115,7 @@
 
             let result;
             if (unit === "celsius") {
-                result = (temp * 9/5) + 32;
+                result = (temp * 5/9) + 32; // BUG: Incorrect formula
                 resultElement.innerText = temp + "°C is " + result.toFixed(2) + "°F";
             } else {
                 result = (temp - 32) * 5/9;
@@ -86,6 +123,6 @@
             }
         }
     </script>
+
 </body>
 </html>
-

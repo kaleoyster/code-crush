@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buggy Calendar App</title>
+    <title>Simple Calendar App</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,20 +14,13 @@
             background: linear-gradient(135deg, #667eea, #764ba2);
             margin: 0;
         }
-        .main-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 30px;
-            margin-top: 30px;
-        }
         .calendar-container {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             text-align: center;
-            width: 400px;
+            width: 350px;
         }
         .month {
             font-size: 20px;
@@ -48,9 +41,6 @@
         .day:hover {
             background: #ddd;
         }
-        .selected-day {
-            background: #ffcc00 !important;
-        }
         .controls {
             display: flex;
             justify-content: space-between;
@@ -61,42 +51,19 @@
             padding: 5px;
             margin-top: 10px;
         }
-        .requirements {
-            text-align: left;
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            max-width: 350px;
-        }
     </style>
 </head>
 <body>
-
-    <div class="main-container">
-        <div class="calendar-container">
-            <div class="controls">
-                <button onclick="prevMonth()">&#9665;</button>
-                <span class="month" id="month-year"></span>
-                <button onclick="nextMonth()">&#9655;</button>
-            </div>
-            <div class="calendar" id="calendar"></div>
-            <input type="text" class="event-input" id="event-input" placeholder="Add event">
-            <button onclick="saveEvent()">Save Event</button>
-            <p id="event-message"></p>
+    <div class="calendar-container">
+        <div class="controls">
+            <button onclick="prevMonth()">&#9665;</button>
+            <span class="month" id="month-year"></span>
+            <button onclick="nextMonth()">&#9655;</button>
         </div>
-
-        <div class="requirements">
-            <h3>Requirements</h3>
-            <p>The Calendar App should function as follows:</p>
-            <ul>
-                <li>The calendar should display the correct number of days for each month.</li>
-                <li>Users can navigate between months using the arrow buttons.</li>
-                <li>Clicking on a day should highlight it as selected.</li>
-                <li>Users should be able to add events, and events should remain saved when switching months.</li>
-                <li>The app should prevent crashes if the user tries to save an event without selecting a day.</li>
-            </ul>
-        </div>
+        <div class="calendar" id="calendar"></div>
+        <input type="text" class="event-input" id="event-input" placeholder="Add event">
+        <button onclick="addEvent()">Save Event</button>
+        <p id="event-message"></p>
     </div>
 
     <script>
@@ -112,7 +79,7 @@
             monthYear.innerText = months[currentDate.getMonth()] + " " + currentDate.getFullYear();
             
             let firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
-            let totalDays = currentDate.getMonth() === 1 ? 30 : new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate(); // BUG: February always shows 30 days
+            let totalDays = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
             
             for (let i = 0; i < firstDay; i++) {
                 calendar.innerHTML += '<div></div>';
@@ -130,11 +97,9 @@
         function selectDay(day) {
             selectedDay = day;
             document.getElementById("event-message").innerText = `Selected: ${months[currentDate.getMonth()]} ${day}`;
-            let days = document.querySelectorAll(".day");
-            days.forEach(d => d.classList.remove("selected-day"));
         }
 
-        function saveEvent() {
+        function addEvent() {
             if (!selectedDay) {
                 alert("Please select a day first!");
                 return;
@@ -159,6 +124,5 @@
 
         renderCalendar();
     </script>
-
 </body>
 </html>

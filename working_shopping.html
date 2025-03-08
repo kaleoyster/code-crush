@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buggy Shopping Cart</title>
+    <title>Shopping Cart</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,13 +13,6 @@
             height: 100vh;
             background: linear-gradient(135deg, #56CCF2, #2F80ED);
             margin: 0;
-        }
-        .main-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 30px;
-            margin-top: 30px;
         }
         .shop-container {
             background: white;
@@ -86,57 +79,31 @@
             font-weight: bold;
             margin-top: 15px;
         }
-        .requirements {
-            text-align: left;
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            max-width: 350px;
-        }
     </style>
 </head>
 <body>
-
-    <div class="main-container">
-        <!-- Shopping Cart -->
-        <div class="shop-container">
-            <h2>Shopping Cart</h2>
-            <div class="items-container">
-                <div class="item" onclick="addItem('Apple', 1.50)">
-                    <img src="images/apple.png" alt="Apple">
-                    Apple - $1.50
-                </div>
-                <div class="item" onclick="addItem('Banana', 1.00)">
-                    <img src="images/orange.png" alt="Banana">
-                    Banana - $1.00
-                </div>
-                <div class="item" onclick="addItem('Orange', 1.25)">
-                    <img src="images/orange.png" alt="Orange">
-                    Orange - $1.25
-                </div>
-                <div class="item" onclick="addItem('Grapes', 2.00)">
-                    <img src="images/grapes.png" alt="Grapes">
-                    Grapes - $2.00
-                </div>
+    <div class="shop-container">
+        <h2>Shopping Cart</h2>
+        <div class="items-container">
+            <div class="item" onclick="addItem('Apple', 1.50)">
+                <img src="https://via.placeholder.com/80" alt="Apple">
+                Apple - $1.50
             </div>
-            <ul class="cart-items" id="cart-items"></ul>
-            <p class="total">Total: $<span id="total">0.00</span></p>
+            <div class="item" onclick="addItem('Banana', 1.00)">
+                <img src="https://via.placeholder.com/80" alt="Banana">
+                Banana - $1.00
+            </div>
+            <div class="item" onclick="addItem('Orange', 1.25)">
+                <img src="https://via.placeholder.com/80" alt="Orange">
+                Orange - $1.25
+            </div>
+            <div class="item" onclick="addItem('Grapes', 2.00)">
+                <img src="https://via.placeholder.com/80" alt="Grapes">
+                Grapes - $2.00
+            </div>
         </div>
-
-        <!-- Requirements Section -->
-        <div class="requirements">
-            <h3>Requirements</h3>
-            <p>The Shopping Cart should function as follows:</p>
-            <ul>
-                <li>Users should be able to <b>add items</b> to the cart by clicking them.</li>
-                <li>Each added item should <b>appear in the cart</b> below.</li>
-                <li>Clicking the <b>"Remove"</b> button next to an item should <b>remove it from the cart.</b></li>
-                <li>The <b>total price should update correctly</b> when items are added or removed.</li>
-                <li>Items should <b>not be duplicated</b>—instead, their <b>quantity should increase.</b></li>
-                <li>If the cart is empty, a message <b>"Your cart is empty"</b> should be displayed.</li>
-            </ul>
-        </div>
+        <ul class="cart-items" id="cart-items"></ul>
+        <p class="total">Total: $<span id="total">0.00</span></p>
     </div>
 
     <script>
@@ -161,12 +128,13 @@
             cart.forEach((item, index) => {
                 total += item.price;
                 let li = document.createElement("li");
-                li.innerHTML = `${item.name} - $${item.price.toFixed(2)} <button class="remove-button" onclick="removeItem(${index})">Remove</button>`; // ✅ Fixed backticks
+                li.innerHTML = `${item.name} - $${item.price.toFixed(2)} <button class="remove-button" onclick="removeItem(${index})">Remove</button>`;
                 cartList.appendChild(li);
             });
-
+            
             totalElement.innerText = total.toFixed(2);
         }
     </script>
 </body>
 </html>
+

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Screen</title>
+    <title>Buggy Login App</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,6 +12,14 @@
             align-items: center;
             height: 100vh;
             background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0;
+        }
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 30px;
+            margin-top: 30px;
         }
         .login-container {
             background: white;
@@ -49,15 +57,47 @@
             color: red;
             margin-top: 10px;
         }
+        .success-message {
+            color: green;
+            margin-top: 10px;
+        }
+        .requirements {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            max-width: 350px;
+        }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <input type="text" id="username" class="input-field" placeholder="Username">
-        <input type="password" id="password" class="input-field" placeholder="Password">
-        <button class="login-button" onclick="login()">Login</button>
-        <p id="error-message" class="error-message"></p>
+
+    <div class="main-container">
+        <!-- Login Form -->
+        <div class="login-container">
+            <h2>Login</h2>
+            <input type="text" id="username" class="input-field" placeholder="Username">
+            <input type="text" id="password" class="input-field" placeholder="Password"> <!-- BUG: Should be type="password" -->
+            <button class="login-button" onclick="login()">Login</button>
+            <p id="error-message" class="error-message"></p>
+            <p id="success-message" class="success-message"></p>
+        </div>
+
+        <!-- Requirements Section -->
+        <div class="requirements">
+            <h3>Requirements</h3>
+            <p>The Login App should function as follows:</p>
+            <ul>
+                <li>Users should be able to enter their <b>username</b> and <b>password</b>.</li>
+                <li>Clicking the "Login" button should check if the credentials are correct.</li>
+                <li>If the username is <b>"admin"</b> and the password is <b>"password"</b>, the app should display a <b>"Login Successful!"</b> message.</li>
+                <li>If incorrect credentials are entered, an <b>error message</b> should appear.</li>
+                <li>The app should <b>clear error messages</b> when correct login details are entered.</li>
+                <li>The <b>password should be hidden</b> using a password field (●●● instead of visible text).</li>
+                <li>If a user tries to log in without entering both fields, a warning should appear.</li>
+            </ul>
+        </div>
     </div>
 
     <script>
@@ -65,14 +105,21 @@
             let username = document.getElementById("username").value;
             let password = document.getElementById("password").value;
             let errorMessage = document.getElementById("error-message");
+            let successMessage = document.getElementById("success-message");
 
-            if (username === "admin" && password === "password") {
+            if (username === "" || password === "") {
+                errorMessage.innerText = "Please enter both username and password.";
+                return;
+            }
+
+            if (username = "admin" && password == "password") { // BUG: Single "=" assigns instead of checking equality
                 alert("Login Successful!");
+                successMessage.innerText = "Login Successful!"; // BUG: Success message never appears
             } else {
                 errorMessage.innerText = "Invalid credentials, please try again.";
             }
         }
     </script>
+
 </body>
 </html>
-

@@ -3,41 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Calculator</title>
+    <title>Buggy Calculator</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        .container { margin-top: 50px; display: inline-block; background: #333; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-        .screen { width: 100%; height: 50px; text-align: right; font-size: 24px; margin-bottom: 10px; padding: 10px; border: none; background: #222; color: white; border-radius: 5px; }
-        .buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-        button { padding: 15px; font-size: 18px; border: none; background: #555; color: white; border-radius: 5px; cursor: pointer; }
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 30px; /* Adds space between the calculator and requirements */
+            margin-top: 50px;
+        }
+
+        .container { 
+            background: #333; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
+        }
+
+        .screen { 
+            width: 100%; 
+            height: 50px; 
+            text-align: right; 
+            font-size: 24px; 
+            margin-bottom: 10px; 
+            padding: 10px; 
+            border: none; 
+            background: #222; 
+            color: white; 
+            border-radius: 5px; 
+        }
+
+        .buttons { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 10px; 
+        }
+
+        button { 
+            padding: 15px; 
+            font-size: 18px; 
+            border: none; 
+            background: #555; 
+            color: white; 
+            border-radius: 5px; 
+            cursor: pointer; 
+        }
+
         button:hover { background: #777; }
         .operator { background: #ff9500; }
         .operator:hover { background: #e08900; }
         .equal { background: #28a745; }
         .equal:hover { background: #218838; }
+
+        .requirements { 
+            text-align: left; 
+            background: #f8f9fa; 
+            padding: 20px; 
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            max-width: 400px;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <input type="text" id="screen" class="screen" disabled>
-        <div class="buttons">
-            <button onclick="clearScreen()">C</button>
-            <button onclick="appendValue('/')" class="operator">/</button>
-            <button onclick="appendValue('*')" class="operator">*</button>
-            <button onclick="appendValue('-')" class="operator">-</button>
-            <button onclick="appendValue('7')">7</button>
-            <button onclick="appendValue('8')">8</button>
-            <button onclick="appendValue('9')">9</button>
-            <button onclick="appendValue('+')" class="operator">+</button>
-            <button onclick="appendValue('4')">4</button>
-            <button onclick="appendValue('5')">5</button>
-            <button onclick="appendValue('6')">6</button>
-            <button onclick="calculateResult()" class="equal">=</button>
-            <button onclick="appendValue('1')">1</button>
-            <button onclick="appendValue('2')">2</button>
-            <button onclick="appendValue('3')">3</button>
-            <button onclick="appendValue('0')">0</button>
-            <button onclick="appendValue('.')">.</button>
+
+    <div class="main-container">
+        <!-- Calculator -->
+        <div class="container">
+            <input type="text" id="screen" class="screen" disabled>
+            <div class="buttons">
+                <button onclick="clearScreen()">C</button>
+                <button onclick="appendValue('/')" class="operator">/</button>
+                <button onclick="appendValue('*')" class="operator">*</button>
+                <button onclick="appendValue('*')" class="operator">-</button> <!-- BUG: Incorrect operator -->
+                <button onclick="appendValue('7')">7</button>
+                <button onclick="appendValue('8')">8</button>
+                <button onclick="appendValue('9')">9</button>
+                <button onclick="appendValue('+')" class="operator">+</button>
+                <button onclick="appendValue('4')">4</button>
+                <button onclick="appendValue('5')">5</button>
+                <button onclick="appendValue('5')">6</button> <!-- BUG: Wrong value for button -->
+                <button onclick="calculateResult()" class="equal">=</button>
+                <button onclick="appendValue('1')">1</button>
+                <button onclick="appendValue('2')">2</button>
+                <button onclick="appendValue('3')">3</button>
+                <button onclick="appendValue('0')"></button> <!-- BUG: Missing label for 0 -->
+                <button onclick="appendValue('.')">.</button>
+            </div>
+        </div>
+
+        <!-- Requirements Box -->
+        <div class="requirements">
+            <h3>Requirements</h3>
+            <p>The calculator should function as follows:</p>
+            <ul>
+                <li>Users can input numbers (0-9) by clicking the buttons.</li>
+                <li>Basic arithmetic operations (+, -, *, /) should work correctly.</li>
+                <li>Pressing the "=" button should evaluate the expression.</li>
+                <li>The "C" button should clear the input field completely.</li>
+                <li>The calculator should not accept invalid operations or cause crashes.</li>
+            </ul>
         </div>
     </div>
 
@@ -47,17 +120,17 @@
         }
         
         function clearScreen() {
-            document.getElementById("screen").value = "";
+            document.getElementById("screen").value = ""; // BUG: Might not fully reset
         }
         
         function calculateResult() {
             try {
-                document.getElementById("screen").value = eval(document.getElementById("screen").value);
+                document.getElementById("screen").value = eval(document.getElementById("screen").value); // BUG: eval is unsafe
             } catch {
                 document.getElementById("screen").value = "Error";
             }
         }
     </script>
+
 </body>
 </html>
-
