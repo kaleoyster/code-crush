@@ -1,5 +1,6 @@
 # Scenario 3: Buggy Temperature App
 ---
+
 ### Requirements
 1. **UI**:
     - Allow the user to input temperature in Celsius or Fahrenheit.
